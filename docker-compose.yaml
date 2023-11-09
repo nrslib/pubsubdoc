@@ -1,0 +1,249 @@
+version: "3.5"
+services:
+  zookeeper:
+    image: bitnami/zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+        - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - network0
+
+  kcat:
+    image: confluentinc/cp-kcat
+    command: sleep infinity
+    networks:
+      - network0
+
+  kafka-0:
+    image: bitnami/kafka
+    hostname: kafka-0
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-0:9092,PLAINTEXT_HOST://localhost:29092
+      - KAFKA_CFG_BROKER_ID=0
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    networks:
+      - network0
+
+  kafka-ui-0:
+    container_name: kafka-ui-0
+    image: provectuslabs/kafka-ui:v0.7.0
+    depends_on:
+      - kafka-0
+    ports:
+      - "9080:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-0
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-0:9092
+      - AUTH_TYPE="LOGIN_FORM"
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=admin
+    networks:
+      - network0
+
+  kafka-1:
+    image: bitnami/kafka
+    hostname: kafka-1
+    ports:
+      - "9192:9092"
+      - "29192:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-1:9092,PLAINTEXT_HOST://localhost:29192
+      - KAFKA_CFG_BROKER_ID=1
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    networks:
+      - network0
+
+  kafka-ui-1:
+    container_name: kafka-ui-1
+    image: provectuslabs/kafka-ui:v0.7.0
+    depends_on:
+      - kafka-1
+    ports:
+      - "9180:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-1
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-1:9092
+      - AUTH_TYPE="LOGIN_FORM"
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=admin
+    networks:
+      - network0
+
+  kafka-2:
+    image: bitnami/kafka
+    hostname: kafka-2
+    ports:
+      - "9292:9092"
+      - "29292:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-2:9092,PLAINTEXT_HOST://localhost:29292
+      - KAFKA_CFG_BROKER_ID=2
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    networks:
+      - network0
+
+  kafka-ui-2:
+    container_name: kafka-ui-2
+    image: provectuslabs/kafka-ui:v0.7.0
+    depends_on:
+      - kafka-2
+    ports:
+      - "9280:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-2
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-2:9092
+      - AUTH_TYPE="LOGIN_FORM"
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=admin
+    networks:
+      - network0
+
+  init-kafka:
+    image: confluentinc/cp-kafka
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    entrypoint: [ '/bin/sh', '-c']
+    command: |
+      "
+      # Blocks until kafka is reachable
+      echo 'checking kafka-0'
+      cat <<EOS > wait.sh
+      while :
+      do
+        kafka-topics --bootstrap-server kafka-0:9092 --list
+        if [ "$$?" = "0" ]; then
+          echo 'ok'
+          break
+        fi
+        echo 'sleeping'
+        sleep 1
+      done
+      EOS
+
+      chmod 755 ./wait.sh
+      ./wait.sh
+      rm ./wait.sh
+
+      echo 'checking kafka-1'
+      cat <<EOS > wait.sh
+      while :
+      do
+        kafka-topics --bootstrap-server kafka-1:9092 --list
+        if [ "$$?" = "0" ]; then
+          echo 'ok'
+          break
+        fi
+        echo 'sleeping'
+        sleep 1
+      done
+      EOS
+
+      chmod 755 ./wait.sh
+      ./wait.sh
+      rm ./wait.sh
+
+      echo 'check kafka-2'
+      cat <<EOS > wait.sh
+      while :
+      do
+        kafka-topics --bootstrap-server kafka-2:9092 --list
+        if [ "$$?" = "0" ]; then
+          echo 'ok'
+          break
+        fi
+        echo 'sleeping'
+        sleep 1
+      done
+      EOS
+
+      chmod 755 ./wait.sh
+      ./wait.sh
+      rm ./wait.sh
+
+      echo -e 'Creating kafka topics'
+      kafka-topics --bootstrap-server kafka-0:9092 --topic doc-service-topic --create --if-not-exists --replication-factor 3 --partitions 1
+      kafka-topics --bootstrap-server kafka-0:9092 --topic payment-service-topic --create --if-not-exists --replication-factor 3 --partitions 1
+      kafka-topics --bootstrap-server kafka-0:9092 --topic pubsubdoc-service-topic --create --if-not-exists --replication-factor 3 --partitions 1
+      kafka-topics --bootstrap-server kafka-0:9092 --topic user-service-topic --create --if-not-exists --replication-factor 3 --partitions 1
+      
+      echo -e 'Successfully created the following topics:'
+      kafka-topics --bootstrap-server kafka-0:9092 --list
+      "
+    networks:
+      - network0
+
+  # Data store
+  mysql-doc-web:
+    image: mysql:latest
+    container_name: mysql-doc-web
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: mysql
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3306:3306"
+
+  mysql-payment-web:
+    image: mysql:latest
+    container_name: mysql-payment-web
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: mysql
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3316:3306"
+
+  mysql-pubsubdoc-back:
+    image: mysql:latest
+    container_name: mysql-pubsubdoc-back
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: mysql
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3326:3306"
+
+  mysql-user-web:
+    image: mysql:latest
+    container_name: mysql-user-web
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: mysql
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3336:3306"
+
+networks:
+  network0:

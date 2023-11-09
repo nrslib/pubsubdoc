@@ -1,0 +1,22 @@
+application:
+  services:
+    doc:
+      host: http://localhost:8080
+    payment:
+      host: http://localhost:8180
+    pubsubdoc:
+      host: http://localhost:8280
+    user:
+      host: http://localhost:8380
+axon:
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
+server:
+  port: 8280
+springdoc:
+  packages-to-scan: com.pubsubdoc.service.back
+  paths-to-match: "/api/**"
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json

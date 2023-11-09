@@ -1,0 +1,5 @@
+application:
+  disable-kafka: false
+axon:
+  axonserver:
+    enabled: false

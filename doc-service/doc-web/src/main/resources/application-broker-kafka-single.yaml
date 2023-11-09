@@ -1,0 +1,14 @@
+application:
+  kafka:
+    topics: doc-service-topic
+axon:
+  kafka:
+    client-id: doc-service-web
+    producer:
+      retries: 0
+    consumer:
+      event-processor-mode: tracking
+    properties:
+      security.protocol: PLAINTEXT
+    default-topic: doc-service-topic
+    bootstrap-servers: localhost:29092,localhost:29192,localhost:29292

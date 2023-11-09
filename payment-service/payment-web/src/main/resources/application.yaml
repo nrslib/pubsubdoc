@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: inmem
+    group:
+      inmem:
+        - common
+        - app-inmem
+        - datastore-h2
+      local:
+        - common
+        - app-inmem
+        - datastore-h2
+      kafka-single:
+        - common
+        - app-kafka-single
+        - broker-kafka-single
+        - datastore-mysql

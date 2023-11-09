@@ -1,0 +1,6 @@
+package com.pubsubdoc.doc.service.api.domain.models.doc;
+
+import com.pubsubdoc.doc.service.shared.application.doc.models.doc.DocId;
+
+public record DocUpdated(DocId docId, String body) implements DocEvent {
+}

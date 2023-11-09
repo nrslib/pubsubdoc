@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="inmem" type="CompoundRunConfigurationType">
+    <toRun name="DocServiceWebApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="PaymentServiceWebApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="PubSubDocServiceBackApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="UserServiceWebApplication" type="SpringBootApplicationConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

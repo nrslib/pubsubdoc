@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dockerKafkaSIngle" type="CompoundRunConfigurationType">
+    <toRun name="dockerKafkaSingleDocServiceWebApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="dockerKafkaSinglePaymentServiceWebApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="dockerKafkaSinglePubSubDocServiceBackApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="dockerKafkaSingleUserServiceWebApplication" type="SpringBootApplicationConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

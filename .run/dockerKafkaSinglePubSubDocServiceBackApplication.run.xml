@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dockerKafkaSinglePubSubDocServiceBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <envs>
+      <env name="SPRING_PROFILES_ACTIVE" value="kafka-single" />
+    </envs>
+    <module name="pubsubdoc.pubsubdoc-service.back.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.pubsubdoc.service.back.PubSubDocServiceBackApplication" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.pubsubdoc.service.back.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+      <option name="credential" />
+      <option name="region" />
+      <option name="useCurrentConnection" value="false" />
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
