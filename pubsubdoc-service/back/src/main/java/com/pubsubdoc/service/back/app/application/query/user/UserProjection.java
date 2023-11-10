@@ -2,7 +2,7 @@ package com.pubsubdoc.service.back.app.application.query.user;
 
 import com.pubsubdoc.service.back.app.infrastructure.jpa.user.UserDataModel;
 import com.pubsubdoc.service.back.app.infrastructure.jpa.user.UserRepository;
-import com.pubsubdoc.user.service.api.domain.models.team.TeamJoined;
+import com.pubsubdoc.user.service.api.domain.models.team.TeamMemberAdded;
 import com.pubsubdoc.user.service.api.domain.models.user.UserCreated;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ResetHandler;
@@ -29,8 +29,8 @@ public class UserProjection {
     }
 
     @EventHandler
-    public void on(TeamJoined event) {
-        var user = userRepository.findById(event.userId().asString()).orElseThrow();
+    public void on(TeamMemberAdded event) {
+        var user = userRepository.findById(event.newMemberId().asString()).orElseThrow();
         user.setTeamId(event.teamId().asString());
 
         userRepository.save(user);
