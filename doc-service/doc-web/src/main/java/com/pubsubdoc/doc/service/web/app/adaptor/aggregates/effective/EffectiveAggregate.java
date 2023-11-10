@@ -22,6 +22,7 @@ public class EffectiveAggregate extends AbstractAggregate<Effective, EffectiveId
             return null;
         }
     }
+
     @Override
     protected Effective newAggregateRootByEvent(EffectiveEvent event) {
         if (event instanceof EffectiveMarked) {
@@ -30,6 +31,7 @@ public class EffectiveAggregate extends AbstractAggregate<Effective, EffectiveId
 
         throw new IllegalArgumentException();
     }
+
     @Override
     protected boolean isConstructEvent(EffectiveEvent event) {
         return event instanceof EffectiveMarked;

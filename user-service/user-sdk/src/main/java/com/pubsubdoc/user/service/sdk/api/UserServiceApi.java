@@ -7,5 +7,6 @@ import java.util.UUID;
 
 public interface UserServiceApi {
     UsersGetResponse getUser(UUID userId);
+
     UsersFindResponse findUser(String userName);
 }

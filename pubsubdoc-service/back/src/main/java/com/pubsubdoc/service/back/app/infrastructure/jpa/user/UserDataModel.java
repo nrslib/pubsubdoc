@@ -10,12 +10,12 @@ import lombok.Data;
 @Entity
 @Table(name = "users")
 public class UserDataModel {
-        @Id
-        String userId;
+    @Id
+    String userId;
 
-        @Column
-        String name;
+    @Column
+    String name;
 
-        @Column
-        String teamId;
+    @Column
+    String teamId;
 }

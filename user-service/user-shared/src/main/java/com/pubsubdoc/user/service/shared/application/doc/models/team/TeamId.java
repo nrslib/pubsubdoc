@@ -4,7 +4,7 @@ import com.example.appkit.application.basic.IdObject;
 
 import java.util.UUID;
 
-public record TeamId (UUID value) implements IdObject {
+public record TeamId(UUID value) implements IdObject {
     public TeamId() {
         this(UUID.randomUUID());
     }

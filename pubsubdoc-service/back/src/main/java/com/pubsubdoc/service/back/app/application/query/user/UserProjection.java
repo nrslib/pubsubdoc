@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 public class UserProjection {
     private final UserRepository userRepository;
 
-    public UserProjection(UserRepository userRepository) {this.userRepository = userRepository;}
+    public UserProjection(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @ResetHandler
     public void reset() {

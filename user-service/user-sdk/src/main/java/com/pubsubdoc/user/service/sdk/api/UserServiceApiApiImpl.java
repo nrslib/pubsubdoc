@@ -13,6 +13,7 @@ public record UserServiceApiApiImpl(String host) implements UserServiceApi {
         var response = restTemplate.getForEntity(host + "/api/users/" + userId, UsersGetResponse.class);
         return response.getBody();
     }
+
     @Override
     public UsersFindResponse findUser(String userName) {
         var restTemplate = new RestTemplate();

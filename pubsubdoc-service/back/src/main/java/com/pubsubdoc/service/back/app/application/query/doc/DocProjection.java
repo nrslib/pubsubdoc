@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 public class DocProjection {
     private final DocRepository repository;
 
-    public DocProjection(DocRepository repository) {this.repository = repository;}
+    public DocProjection(DocRepository repository) {
+        this.repository = repository;
+    }
 
     @ResetHandler
     public void reset() {

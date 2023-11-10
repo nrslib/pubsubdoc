@@ -11,6 +11,7 @@ public class NotFoundException extends RuntimeException {
 
         this.errorCode = errorCode;
     }
+
     public NotFoundException(String message) {
         this(message, null);
     }

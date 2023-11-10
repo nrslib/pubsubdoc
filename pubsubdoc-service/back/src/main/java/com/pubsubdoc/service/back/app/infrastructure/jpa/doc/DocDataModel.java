@@ -9,13 +9,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "docs")
-public class DocDataModel{
-        @Id
-        String docId;
+public class DocDataModel {
+    @Id
+    String docId;
 
-        @Column
-        String body;
+    @Column
+    String body;
 
-        @Column
-        int effectiveCount;
+    @Column
+    int effectiveCount;
 }

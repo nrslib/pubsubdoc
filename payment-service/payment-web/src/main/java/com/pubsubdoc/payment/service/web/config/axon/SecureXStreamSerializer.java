@@ -1,4 +1,4 @@
-    package com.pubsubdoc.payment.service.web.config.axon;
+package com.pubsubdoc.payment.service.web.config.axon;
 
 import com.thoughtworks.xstream.XStream;
 import org.axonframework.serialization.xml.XStreamSerializer;
@@ -21,7 +21,7 @@ public class SecureXStreamSerializer {
                 "org.axonframework.**",
                 "java.util.**",
                 "com.pubsubdoc.**"
-		});
+        });
         return XStreamSerializer.builder().xStream(xStream).build();
     }
 

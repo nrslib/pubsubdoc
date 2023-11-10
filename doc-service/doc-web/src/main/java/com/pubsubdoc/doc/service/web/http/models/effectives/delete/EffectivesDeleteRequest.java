@@ -5,4 +5,5 @@ import java.util.UUID;
 public record EffectivesDeleteRequest(
         UUID docId,
         UUID userId
-) {}
+) {
+}

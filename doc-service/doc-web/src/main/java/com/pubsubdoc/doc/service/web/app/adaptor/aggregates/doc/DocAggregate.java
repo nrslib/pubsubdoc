@@ -20,10 +20,12 @@ public class DocAggregate extends AbstractAggregate<Doc, DocId, DocEvent> {
             return null;
         }
     }
+
     @Override
     protected Doc newAggregateRootByEvent(DocEvent event) {
         return Doc.applyEvent((DocCreated) event);
     }
+
     @Override
     protected boolean isConstructEvent(DocEvent event) {
         return event instanceof DocCreated;

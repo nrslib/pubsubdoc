@@ -3,7 +3,6 @@ package com.pubsubdoc.service.back.app.application.query.user;
 import com.pubsubdoc.service.back.app.application.query.user.queries.FindUser;
 import com.pubsubdoc.service.back.app.application.query.user.queries.FindUserResult;
 import com.pubsubdoc.service.back.app.infrastructure.jpa.user.UserRepository;
-import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Service;
 

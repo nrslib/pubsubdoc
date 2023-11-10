@@ -5,4 +5,5 @@ import java.util.UUID;
 public record EffectivesPostRequest(
         UUID docId,
         UUID userId
-) {}
+) {
+}

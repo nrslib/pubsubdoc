@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnExpression("!${application.disable-kafka:false} and '${axon.kafka.consumer.event-processor-mode}' == 'tracking'")
 public class AxonKafkaTrackingConfiguration {
     @Autowired
-    public void registerProcessor(EventProcessingConfigurer configurer, StreamableKafkaMessageSource<String , byte[]> streamableKafkaMessageSource){
+    public void registerProcessor(EventProcessingConfigurer configurer, StreamableKafkaMessageSource<String, byte[]> streamableKafkaMessageSource) {
         configurer.registerTrackingEventProcessor(
                 UserProcessCreateCreationStep.class.getPackageName(),
                 c -> streamableKafkaMessageSource

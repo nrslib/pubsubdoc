@@ -24,7 +24,7 @@ public record UserDataModelQueryService(UserDataRepository userDataRepository) {
     @QueryHandler
     public FindUserDataModelResult handle(FindUserDataModel criteria) {
         var spec = Specification.where(
-            equalUserName(criteria.userName())
+                equalUserName(criteria.userName())
         );
         var users = userDataRepository.findAll(spec);
 

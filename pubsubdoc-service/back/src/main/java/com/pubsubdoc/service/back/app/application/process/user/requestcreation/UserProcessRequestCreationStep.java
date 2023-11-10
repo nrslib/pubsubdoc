@@ -5,11 +5,7 @@ import com.pubsubdoc.user.service.sdk.api.UserServiceApi;
 import com.pubsubdoc.user.service.shared.application.doc.models.user.UserId;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventhandling.gateway.EventGateway;
-import org.axonframework.messaging.MetaData;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Component
 public record UserProcessRequestCreationStep(UserServiceApi userServiceApi, EventGateway eventGateway) {

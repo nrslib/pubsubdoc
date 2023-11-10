@@ -24,10 +24,12 @@ public class TeamAggregate extends AbstractAggregate<Team, TeamId, TeamEvent> {
             return null;
         }
     }
+
     @Override
     protected Team newAggregateRootByEvent(TeamEvent event) {
         return Team.applyEvent((TeamCreated) event);
     }
+
     @Override
     protected boolean isConstructEvent(TeamEvent event) {
         return event instanceof TeamCreated;
@@ -39,7 +41,8 @@ public class TeamAggregate extends AbstractAggregate<Team, TeamId, TeamEvent> {
         apply(event);
     }
 
-    protected TeamAggregate() {}
+    protected TeamAggregate() {
+    }
 
     @CommandHandler
     public Either<TeamError, TeamEvent> handle(TeamAddMember command) {

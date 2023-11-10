@@ -21,7 +21,7 @@ public class SecureXStreamSerializer {
                 "org.axonframework.**",
                 "java.util.**",
                 "com.pubsubdoc.**"
-		});
+        });
         return XStreamSerializer.builder().xStream(xStream).build();
     }
 

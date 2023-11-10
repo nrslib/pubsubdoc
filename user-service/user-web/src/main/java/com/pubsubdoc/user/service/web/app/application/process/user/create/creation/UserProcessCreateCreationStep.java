@@ -4,11 +4,7 @@ import com.pubsubdoc.back.service.api.process.user.requestcreation.UserProcessRe
 import com.pubsubdoc.user.service.web.app.adaptor.aggregates.user.commands.UserCreate;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.messaging.MetaData;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Component
 public record UserProcessCreateCreationStep(CommandGateway commandGateway) {

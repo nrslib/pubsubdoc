@@ -2,7 +2,6 @@ package com.pubsubdoc.payment.service.web.app.adaptor.aggregates.payment;
 
 import com.example.axon.application.adaptor.AbstractAggregate;
 import com.pubsubdoc.payment.service.api.domain.models.payment.PaymentEvent;
-import com.pubsubdoc.payment.service.api.domain.models.payment.PaymentFailed;
 import com.pubsubdoc.payment.service.api.domain.models.payment.PaymentRequested;
 import com.pubsubdoc.payment.service.shared.application.doc.models.payment.PaymentId;
 import com.pubsubdoc.payment.service.web.app.adaptor.aggregates.payment.commands.PaymentComplete;
@@ -23,16 +22,19 @@ public class PaymentAggregate extends AbstractAggregate<Payment, PaymentId, Paym
             return null;
         }
     }
+
     @Override
     protected Payment newAggregateRootByEvent(PaymentEvent event) {
         return Payment.applyEvent((PaymentRequested) event);
     }
+
     @Override
     protected boolean isConstructEvent(PaymentEvent event) {
         return event instanceof PaymentRequested;
     }
 
-    protected PaymentAggregate() {}
+    protected PaymentAggregate() {
+    }
 
     @CommandHandler
     public PaymentAggregate(PaymentRequest command) {

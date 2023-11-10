@@ -34,7 +34,7 @@ public class AxonKafkaConfiguration {
                 .consumerFactory(kafkaConsumerFactory)
                 .fetcher(kafkaFetcher)
                 .messageConverter(kafkaMessageConverter)
-                .bufferFactory (
+                .bufferFactory(
                         () -> new SortedKafkaMessageBuffer<>(
                                 properties.getFetcher().getBufferSize()
                         )

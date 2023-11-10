@@ -11,6 +11,7 @@ public class InMemoryUserServiceApi implements UserServiceApi {
     public UsersGetResponse getUser(UUID userId) {
         return new UsersGetResponse(userId, "", null);
     }
+
     @Override
     public UsersFindResponse findUser(String userName) {
         return new UsersFindResponse(List.of());

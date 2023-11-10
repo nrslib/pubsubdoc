@@ -8,7 +8,6 @@ import org.axonframework.messaging.MetaData;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.UUID;
 
 @Component
 public record PaymentProcessExecutionStep(CommandGateway commandGateway) {

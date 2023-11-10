@@ -20,16 +20,19 @@ public class UserAggregate extends AbstractAggregate<User, UserId, UserEvent> {
             return null;
         }
     }
+
     @Override
     protected User newAggregateRootByEvent(UserEvent event) {
         return User.applyEvent((UserCreated) event);
     }
+
     @Override
     protected boolean isConstructEvent(UserEvent event) {
         return event instanceof UserCreated;
     }
 
-    protected UserAggregate() {}
+    protected UserAggregate() {
+    }
 
     @CommandHandler
     public UserAggregate(UserCreate command) {
