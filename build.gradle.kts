@@ -43,9 +43,13 @@ project(":appkit:application-basic") {
 }
 
 project (":axon:application") {
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+
     dependencies {
         implementation(project(":appkit:application-basic"))
         implementation("org.axonframework:axon-spring-boot-starter:$axonVersion")
+        implementation("org.springframework.boot:spring-boot-starter-web")
     }
 }
 
@@ -120,6 +124,7 @@ project (":payment-service:payment-web") {
         implementation("org.axonframework.extensions.springcloud:axon-springcloud-spring-boot-starter:$axonExtensionSpringCloudVersion")
         implementation("org.apache.kafka:kafka-clients:3.2.2")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-quartz")
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 

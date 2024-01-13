@@ -1,6 +1,8 @@
 package com.pubsubdoc.payment.service.web.config.infrastructure;
 
 
+import com.pubsubdoc.payment.service.web.app.infrastructure.api.credit.CreditApi;
+import com.pubsubdoc.payment.service.web.app.infrastructure.inmem.api.credit.InMemoryCreditApi;
 import com.pubsubdoc.user.service.sdk.api.UserServiceApi;
 import com.pubsubdoc.user.service.sdk.api.UserServiceApiApiImpl;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,5 +19,10 @@ public class KafkaSingleConfiguration {
     @Bean
     public UserServiceApi userService() {
         return new UserServiceApiApiImpl(userServiceHost);
+    }
+
+    @Bean
+    public CreditApi creditApi() {
+        return new InMemoryCreditApi();
     }
 }

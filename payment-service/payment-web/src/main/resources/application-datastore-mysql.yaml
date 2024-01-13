@@ -8,3 +8,15 @@ spring:
     database: mysql
     hibernate:
       ddl-auto: update
+  quartz:
+    jdbc:
+      schema: classpath:org/quartz/impl/jdbcjobstore/tables_mysql.sql
+      initialize-schema: always
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            isClustered: true
+            clusterCheckinInterval: 20000

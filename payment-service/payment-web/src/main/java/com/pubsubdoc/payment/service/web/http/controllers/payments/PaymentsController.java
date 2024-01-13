@@ -1,7 +1,7 @@
 package com.pubsubdoc.payment.service.web.http.controllers.payments;
 
-import com.pubsubdoc.payment.service.shared.application.doc.models.payment.PaymentId;
-import com.pubsubdoc.payment.service.web.app.adaptor.aggregates.payment.commands.PaymentRequest;
+import com.pubsubdoc.payment.service.shared.application.doc.models.paymentprocess.PaymentProcessId;
+import com.pubsubdoc.payment.service.web.app.adaptor.aggregates.paymentprocess.commands.PaymentRequest;
 import com.pubsubdoc.payment.service.web.http.models.payments.post.PaymentsPostRequest;
 import com.pubsubdoc.payment.service.web.http.models.payments.post.PaymentsPostResponse;
 import com.pubsubdoc.user.service.shared.application.doc.models.user.UserId;
@@ -22,10 +22,9 @@ public record PaymentsController(CommandGateway commandGateway) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PaymentsPostResponse post(PaymentsPostRequest request) {
-        var paymentId = new PaymentId();
         var userId = new UserId(request.userId());
-        commandGateway.sendAndWait(new PaymentRequest(paymentId, userId, request.amount()));
+        PaymentProcessId paymentProcessId = commandGateway.sendAndWait(new PaymentRequest(userId, request.amount(), request.paymentMethod()));
 
-        return new PaymentsPostResponse(paymentId.value());
+        return new PaymentsPostResponse(paymentProcessId.value());
     }
 }

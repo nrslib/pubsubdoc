@@ -7,3 +7,12 @@ spring:
   h2:
     console:
       enabled: true
+  quartz:
+    jdbc:
+      initialize-schema: always
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
