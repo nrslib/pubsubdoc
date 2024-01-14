@@ -1,4 +1,4 @@
-package com.pubsubdoc.payment.service.web.app.application.process.payment.request.request;
+package com.pubsubdoc.payment.service.web.app.application.process.paymentprocess.request.request;
 
 import com.pubsubdoc.payment.service.web.app.adaptor.aggregates.paymentprocess.commands.PaymentProcessFail;
 import com.pubsubdoc.payment.service.web.app.application.external.credit.protocol.sendpaymentexecution.CreditRejected;

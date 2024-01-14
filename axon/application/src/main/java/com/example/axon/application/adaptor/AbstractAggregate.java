@@ -56,7 +56,7 @@ public abstract class AbstractAggregate<AggregateRoot extends EventDrivenAggrega
         AggregateLifecycle.apply(event, metaData);
     }
 
-    protected <Error> Either<Error, Event> apply(Function<AggregateRoot, Either<Error, Event>> action, Consumer<Error> ifLeft) {
+    protected <Error> Either<Error, ? extends Event> apply(Function<AggregateRoot, Either<Error, ? extends Event>> action, Consumer<Error> ifLeft) {
         var result = action.apply(getAggregate());
         result.left().foreach((error) -> {
             ifLeft.accept(error);
@@ -71,7 +71,7 @@ public abstract class AbstractAggregate<AggregateRoot extends EventDrivenAggrega
     }
 
     protected <Error> void applyOrThrow(
-            Function<AggregateRoot, Either<Error, Event>> action,
+            Function<AggregateRoot, Either<Error, ? extends Event>> action,
             Function<Error, RuntimeException> ifLeft
     ) {
         var result = action.apply(getAggregate());

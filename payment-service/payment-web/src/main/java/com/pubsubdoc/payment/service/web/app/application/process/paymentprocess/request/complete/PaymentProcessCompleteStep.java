@@ -1,4 +1,4 @@
-package com.pubsubdoc.payment.service.web.app.application.process.payment.request.complete;
+package com.pubsubdoc.payment.service.web.app.application.process.paymentprocess.request.complete;
 
 import com.pubsubdoc.payment.service.web.app.adaptor.aggregates.paymentprocess.commands.PaymentProcessComplete;
 import com.pubsubdoc.payment.service.web.app.application.external.notification.protocol.sendpaymentexecution.NotificationPaymentExecutionSent;

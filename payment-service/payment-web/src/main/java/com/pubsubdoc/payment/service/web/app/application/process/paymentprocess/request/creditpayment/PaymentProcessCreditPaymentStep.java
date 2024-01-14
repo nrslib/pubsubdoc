@@ -1,4 +1,4 @@
-package com.pubsubdoc.payment.service.web.app.application.process.payment.request.creditpayment;
+package com.pubsubdoc.payment.service.web.app.application.process.paymentprocess.request.creditpayment;
 
 import com.pubsubdoc.payment.service.api.domain.models.paymentprocess.PaymentProcessRequested;
 import com.pubsubdoc.payment.service.shared.application.doc.models.paymentprocess.PaymentMethod;

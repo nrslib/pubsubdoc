@@ -1,4 +1,4 @@
-package com.pubsubdoc.payment.service.web.app.application.process.payment.request.notification;
+package com.pubsubdoc.payment.service.web.app.application.process.paymentprocess.request.notification;
 
 import com.pubsubdoc.payment.service.web.app.application.external.credit.protocol.sendpaymentexecution.CreditAccepted;
 import com.pubsubdoc.payment.service.web.app.application.external.notification.protocol.sendpaymentexecution.NotificationSendPaymentExecution;

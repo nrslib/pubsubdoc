@@ -45,7 +45,9 @@ public class PaymentProcessAggregate extends AbstractAggregate<PaymentProcess, P
 
     @CommandHandler
     public void handle(PaymentProcessComplete command) {
-        apply(PaymentProcess::complete);
+        applyOrThrow(PaymentProcess::complete, (error) -> {
+            throw new PaymentProcessAggregateException(error);
+        });
     }
 
     @CommandHandler
