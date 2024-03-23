@@ -45,7 +45,7 @@ public class TeamAggregate extends AbstractAggregate<Team, TeamId, TeamEvent> {
     }
 
     @CommandHandler
-    public Either<TeamError, TeamEvent> handle(TeamAddMember command) {
+    public Either<TeamError, ? extends TeamEvent> handle(TeamAddMember command) {
         var result = apply(it -> it.join(command.newMemberId()),
                 it -> applyFail(command, it));
 

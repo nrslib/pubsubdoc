@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="UserServiceWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
     <module name="pubsubdoc.user-service.user-web.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.pubsubdoc.user.service.web.UserServiceWebApplication" />
     <extension name="coverage">

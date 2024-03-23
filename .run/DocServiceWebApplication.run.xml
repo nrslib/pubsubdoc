@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="DocServiceWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
     <module name="pubsubdoc.doc-service.doc-web.main" />
     <selectedOptions>
       <option name="environmentVariables" />

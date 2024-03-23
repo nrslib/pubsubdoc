@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="PubSubDocServiceBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
     <module name="pubsubdoc.pubsubdoc-service.back.main" />
     <selectedOptions>
       <option name="environmentVariables" />

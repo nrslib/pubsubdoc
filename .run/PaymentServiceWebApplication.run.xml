@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="PaymentServiceWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
     <module name="pubsubdoc.payment-service.payment-web.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.pubsubdoc.payment.service.web.PaymentServiceWebApplication" />
     <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">

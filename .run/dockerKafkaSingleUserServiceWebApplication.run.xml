@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="dockerKafkaSingleUserServiceWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
     <envs>
       <env name="SPRING_PROFILES_ACTIVE" value="kafka-single" />
     </envs>
